@@ -45,33 +45,33 @@ data = dict(
     train=dict(
         type=dataset_type,
         img_path=os.path.join(data_root, 'Img'),
-        img_file=os.path.join(data_root, 'Anno_fine/train.txt'),
-        label_file=os.path.join(data_root, 'Anno_fine/train_attr.txt'),
-        cate_file=os.path.join(data_root, 'Anno_fine/train_cate.txt'),
-        bbox_file=os.path.join(data_root, 'Anno_fine/train_bbox.txt'),
-        landmark_file=os.path.join(data_root, 'Anno_fine/train_landmarks.txt'),
+        img_file=os.path.join(data_root, 'Anno_coarse/train.txt'),
+        label_file=os.path.join(data_root, 'Anno_coarse/train_attr.txt'),
+        cate_file=os.path.join(data_root, 'Anno_coarse/train_cate.txt'),
+        bbox_file=os.path.join(data_root, 'Anno_coarse/train_bbox.txt'),
+        landmark_file=os.path.join(data_root, 'Anno_coarse/train_landmarks.txt'),
         img_size=img_size),
     test=dict(
         type=dataset_type,
         img_path=os.path.join(data_root, 'Img'),
-        img_file=os.path.join(data_root, 'Anno_fine/test.txt'),
-        label_file=os.path.join(data_root, 'Anno_fine/test_attr.txt'),
-        cate_file=os.path.join(data_root, 'Anno_fine/test_cate.txt'),
-        bbox_file=os.path.join(data_root, 'Anno_fine/test_bbox.txt'),
-        landmark_file=os.path.join(data_root, 'Anno_fine/test_landmarks.txt'),
+        img_file=os.path.join(data_root, 'Anno_coarse/test.txt'),
+        label_file=os.path.join(data_root, 'Anno_coarse/test_attr.txt'),
+        cate_file=os.path.join(data_root, 'Anno_coarse/test_cate.txt'),
+        bbox_file=os.path.join(data_root, 'Anno_coarse/test_bbox.txt'),
+        landmark_file=os.path.join(data_root, 'Anno_coarse/test_landmarks.txt'),
         attr_cloth_file=os.path.join(data_root,
-                                     'Anno_fine/list_attr_cloth.txt'),
+                                     'Anno_coarse/list_attr_cloth.txt'),
         cate_cloth_file=os.path.join(data_root,
-                                     'Anno_fine/list_category_cloth.txt'),
+                                     'Anno_coarse/list_category_cloth.txt'),
         img_size=img_size),
     val=dict(
         type=dataset_type,
         img_path=os.path.join(data_root, 'Img'),
-        img_file=os.path.join(data_root, 'Anno_fine/val.txt'),
-        label_file=os.path.join(data_root, 'Anno_fine/val_attr.txt'),
-        cate_file=os.path.join(data_root, 'Anno_fine/val_cate.txt'),
-        bbox_file=os.path.join(data_root, 'Anno_fine/val_bbox.txt'),
-        landmark_file=os.path.join(data_root, 'Anno_fine/val_landmarks.txt'),
+        img_file=os.path.join(data_root, 'Anno_coarse/val.txt'),
+        label_file=os.path.join(data_root, 'Anno_coarse/val_attr.txt'),
+        cate_file=os.path.join(data_root, 'Anno_coarse/val_cate.txt'),
+        bbox_file=os.path.join(data_root, 'Anno_coarse/val_bbox.txt'),
+        landmark_file=os.path.join(data_root, 'Anno_coarse/val_landmarks.txt'),
         img_size=img_size))
 
 # optimizer
@@ -94,7 +94,7 @@ log_config = dict(
 
 start_epoch = 0
 total_epochs = 50
-gpus = dict(train=[0, 1], test=[0])
+gpus = dict(train=[0], test=[0])
 work_dir = 'checkpoint/CateAttrPredict/vgg/global'
 print_interval = 20  # interval to print information
 save_interval = 5
