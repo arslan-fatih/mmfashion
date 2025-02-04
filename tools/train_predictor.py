@@ -1,7 +1,7 @@
 from __future__ import division
 import argparse
-
-from mmcv import Config
+import importlib.util
+from mmcv import Config  # Config objesini tekrar kullanacağız
 
 from mmfashion.apis import (get_root_logger, init_dist, set_random_seed,
                             train_predictor)
@@ -37,7 +37,17 @@ def parse_args():
 
 def main():
     args = parse_args()
-    cfg = Config.fromfile(args.config)
+
+    # Config dosyasını doğrudan Python modülü olarak yükle
+    config_path = args.config
+    spec = importlib.util.spec_from_file_location("config", config_path)
+    config_module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(config_module)
+
+    # Python modülünü mmcv.Config formatına dönüştür
+    cfg_dict = {key: value for key, value in config_module.__dict__.items() if not key.startswith("__")}
+    cfg = Config(cfg_dict)  # mmcv.Config yapısını burada oluşturuyoruz
+
     if args.work_dir is not None:
         cfg.work_dir = args.work_dir
     if args.resume_from is not None:

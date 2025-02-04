@@ -2,7 +2,7 @@ import os
 
 # model settings
 arch = 'vgg'
-attribute_num = 26  # num of attributes
+attribute_num = 1000  # num of attributes
 category_num = 50  # num of categories
 img_size = (224, 224)
 
